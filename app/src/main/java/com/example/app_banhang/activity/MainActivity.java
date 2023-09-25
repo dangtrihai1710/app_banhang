@@ -1,8 +1,8 @@
 package com.example.app_banhang.activity;
 import com.example.app_banhang.adapter.SanPhamMoiAdapter;
-import com.example.app_banhang.model.LoaiSpModel;
+
 import com.example.app_banhang.model.SanPhamMoi;
-import com.example.app_banhang.model.SanPhamMoiModel;
+
 import com.example.app_banhang.network.NetworkUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +11,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -38,7 +32,7 @@ import java.util.ArrayList;
 import com.bumptech.glide.Glide;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -78,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 // Xử lý khi có kết nối mạng
                 ActionViewFlipper();
                 getLoaiSanPham();
-//                getSpMoi();
+                getSpMoi();
             }
 
 
@@ -92,26 +86,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void getSpMoi() {
-//        compositeDisposable.add(apiBanHang.getSpMoi()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        sanPhamMoiModel -> {
-//                            if(sanPhamMoiModel.isSuccess()) {
-//                                mangSpMoi = sanPhamMoiModel.getResult();
-//                                spAdapter = new SanPhamMoiAdapter(getApplicationContext(), mangSpMoi);
-//                                recylerViewManHinhChinh.setAdapter(spAdapter);
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "Không thể kết nối với server", Toast.LENGTH_LONG).show();
-//                            }
-//                        },
-//                        throwable -> {
-//                            Toast.makeText(getApplicationContext(), "Không thể kết nối với server: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-//                        }
-//                ));
-//    }
-//
+    private void getSpMoi() {
+        compositeDisposable.add(apiBanHang.getSpMoi()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        sanPhamMoiModel -> {
+                            if(sanPhamMoiModel.isSuccess()) {
+                                mangSpMoi = sanPhamMoiModel.getResult();
+                                spAdapter = new SanPhamMoiAdapter(getApplicationContext(), mangSpMoi);
+                                recylerViewManHinhChinh.setAdapter(spAdapter);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Không thể kết nối với server", Toast.LENGTH_LONG).show();
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), "Không thể kết nối với server: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                ));
+    }
+
     private void getLoaiSanPham() {
         compositeDisposable.add(apiBanHang.getLoaiSp()
                 .subscribeOn(Schedulers.io())
@@ -125,13 +119,9 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(getApplicationContext(), "Không thể kết nối với server", Toast.LENGTH_LONG).show();
                             }
-
-//                            else {
-//                                Toast.makeText(getApplicationContext(), "Không thể kết nối với server", Toast.LENGTH_LONG).show();
-//                            }
-//                        },
-//                        throwable -> {
-//                            Toast.makeText(getApplicationContext(), "Không thể kết nối với server: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), "Không thể kết nối với server: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
     }

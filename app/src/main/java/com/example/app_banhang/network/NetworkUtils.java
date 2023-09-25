@@ -7,15 +7,15 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Build;
 
- public class NetworkUtils{
+public class NetworkUtils {
 
     public interface NetworkListener {
         void onNetworkConnected();
+
         void onNetworkDisconnected();
     }
 
     private ConnectivityManager.NetworkCallback networkCallback;
-
     private Context context;
 
     public NetworkUtils(Context context) {
@@ -29,7 +29,6 @@ import android.os.Build;
             @Override
             public void onAvailable(Network network) {
                 super.onAvailable(network);
-                // Network is connected
                 if (listener != null) {
                     listener.onNetworkConnected();
                 }
@@ -38,7 +37,6 @@ import android.os.Build;
             @Override
             public void onLost(Network network) {
                 super.onLost(network);
-                // Network is disconnected
                 if (listener != null) {
                     listener.onNetworkDisconnected();
                 }
