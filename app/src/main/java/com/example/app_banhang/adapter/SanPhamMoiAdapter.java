@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.app_banhang.model.SanPhamMoi;
 import com.example.app_banhang.R;
+
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.MyViewHolder> {
@@ -35,7 +37,8 @@ public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SanPhamMoi sanPhamMoi = array.get(position);
         holder.txtten.setText(sanPhamMoi.getTensp());
-        holder.txtgia.setText(sanPhamMoi.getGiasp());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.txtgia.setText("Giá: "+decimalFormat.format(Double.parseDouble(sanPhamMoi.getGiasp()))+ "Đ");
         Glide.with(context).load(sanPhamMoi.getHinhanh()).into(holder.imghinhanh);
     }
 
