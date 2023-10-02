@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         Intent gamethethao = new Intent(getApplicationContext(), GameTheThaoActivity.class);
+                        gamethethao.putExtra("loai", 1);
                         startActivity(gamethethao);
                         break;
                     case 2:

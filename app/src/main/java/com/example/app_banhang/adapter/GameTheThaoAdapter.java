@@ -14,12 +14,15 @@ import com.bumptech.glide.Glide;
 import com.example.app_banhang.R;
 import com.example.app_banhang.model.SanPhamMoi;
 
+
 import java.text.DecimalFormat;
 import java.util.List;
+
 
 public class GameTheThaoAdapter extends RecyclerView.Adapter<GameTheThaoAdapter.MyViewHolder> {
     Context context;
     List<SanPhamMoi> array;
+
 
     public GameTheThaoAdapter(Context context, List<SanPhamMoi> array) {
         this.context = context;
